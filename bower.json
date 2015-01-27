@@ -1,0 +1,19 @@
+{
+  "name": "guitar-collections",
+  "version": "0.1.0",
+  "authors": [
+    "Daniel Moffat <danmofo@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "susy": "~2.2.2"
+  }
+}

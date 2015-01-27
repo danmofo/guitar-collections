@@ -1,0 +1,70 @@
+// Band is a large block that spans the entire screen, used to break up unreleated
+// sections
+
+
+// todo: refactor colors into variables
+
+// Base band styles
+.band {
+    // Padding top is lower than the bottom due to the leading
+    // margin on .band__title
+    padding-top: 20px;
+    padding-bottom: 40px;
+
+    font-size: 1.6rem;
+}
+
+.band__title {
+    margin-bottom: 1rem;
+}
+
+.band__subtitle {
+    margin-top: 0;
+    margin-bottom: 5rem;
+}
+
+.band__content {
+    margin-top: 3rem;
+}
+
+
+.band__cta {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+// Band modifiers
+.band--grey {
+    background-color: #CCCCCC;
+}
+
+.band--grey .band__title {
+
+}
+
+.band--grey .band__subtitle,
+.band--grey .band__cta {
+    color: #5C5C5C;
+}
+
+.band--grey .band__cta strong {
+    color: #000;
+}
+
+.band--main {
+    background-color: $brand_main;
+}
+
+.band--main .band__title {
+
+}
+
+
+.band--alt {
+    background-color: $brand_alt;
+}
+
+.band--alt .band__title,
+.band--alt .band__subtitle {
+    color: #FFFFFF;
+}

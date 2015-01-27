@@ -1,0 +1,39 @@
+// Homepage specific styles
+// url: '/'
+
+.call-to-action {
+    background-color: $brand_main;
+    padding-top: 4rem;
+
+    text-align: center;
+}
+
+
+.call-to-action__title {
+    font-size: 4rem;
+    margin-bottom: 2rem;
+
+    @include breakpoint(medium) {
+        font-size: 5rem;
+    }
+}
+
+.call-to-action__subtitle {
+    font-size: 2rem;
+    margin-top: 0;
+
+    @include breakpoint(medium) {
+        margin-bottom: 8rem;
+    }
+
+}
+
+.call-to-action__title,
+.call-to-action__subtitle {
+    color: #FFFFFF;
+}
+
+
+.call-to-action .button {
+    margin-bottom: 9rem;
+}

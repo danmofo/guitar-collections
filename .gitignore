@@ -1,0 +1,12 @@
+*.css
+*.pyc
+
+DS_Store
+cover
+.coverage
+error.log
+.sass-cache
+bower_components
+things-ive-learnt.md
+config.py
+*.db

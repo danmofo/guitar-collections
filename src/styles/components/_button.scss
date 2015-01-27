@@ -1,0 +1,28 @@
+// Button component
+
+.button {
+    // Reset default button styles
+    border: 1px solid transparent;
+
+    padding: 12px 24px;
+    display: inline-block;
+    font-size: 1.6rem;
+
+    text-align: center;
+    text-decoration: none;
+}
+
+.button--main {
+    background-color: $brand_alt;
+    border-color: $brand_alt;
+    color: #FFF;
+}
+
+.button--block {
+    display: block;
+}
+
+.button--large {
+    padding: 18px 36px;
+    font-size: 2rem;
+}
