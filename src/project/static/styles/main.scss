@@ -1,0 +1,52 @@
+/**
+ *  Project name:       Guitar Collector
+ *  Project author(s:   Daniel Moffat
+ *  Browser support:    Modern, evergreen browsers
+ *
+ *  The CSS used in this project builds upon several existing tools and
+ *  projects and wouldn't be possible without them:
+ *  - Bootstrap, type handling
+ *  - Susy, grid system
+ *  - Normalize, starting point
+ */
+
+// Vendor - vendor libraries
+@import 'vendor/normalize';
+@import '../bower_components/susy/sass/susy';
+
+// Common - baseline styles to build upon
+@import 'common/variables';
+@import 'common/mixins';
+@import 'common/baseline';
+@import 'common/fonts';
+@import 'common/layout';
+@import 'common/helpers';
+
+// Components - Re-usable, styled components that work everywhere
+// regardless of context
+@import 'components/band';
+@import 'components/button';
+@import 'components/navigation';
+@import 'components/collection';
+
+// Specific - Page level specific styles
+@import 'specific/homepage';
+
+.container {
+    @include container();
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+// List of features
+.feature-list .feature {
+
+
+    @include breakpoint(medium) {
+        @include span(6 of 12)
+    }
+
+    @include breakpoint(wide) {
+        @include span(4 of 12)
+    }
+}

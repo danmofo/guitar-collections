@@ -1,0 +1,10 @@
+// Taken from: http://jamessteinbach.com/css/sass-maps-breakpoint-mixin/
+@mixin breakpoint($name) {
+    @each $label, $size in $breakpoints {
+        @if $name == $label {
+            @media (min-width: $size) {
+                @content;
+            }
+        }
+    }
+}

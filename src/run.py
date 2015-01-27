@@ -1,7 +1,8 @@
-# run.py
-
-import os
+from flask import render_template
 from project import app
 
-port = int(os.environ.get('PORT', 5000))
-app.run(host='0.0.0.0', port=port)
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+app.run(debug=True)
