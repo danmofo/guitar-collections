@@ -1,4 +1,5 @@
 *.css
+*.css.map
 *.pyc
 
 DS_Store
