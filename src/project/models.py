@@ -1,37 +1,5 @@
 from project import db
 
-# student_identifier = db.Table('student_identifier',
-#     db.Column('class_id', db.Integer, db.ForeignKey('classes.id')),
-#     db.Column('user_id', db.Integer, db.ForeignKey('students.id'))
-# )
-
-# class Student(db.Model):
-
-#     __tablename__ = 'students'
-
-#     id = db.Column(db.Integer, primary_key=True)
-#     firstname = db.Column(db.String(64))
-#     lastname = db.Column(db.String(64))
-#     email = db.Column(db.String(128), unique=True)
-
-#     def __init__(self, firstname, lastname, email):
-#         self.firstname = firstname
-#         self.lastname = lastname
-#         self.email = email
-
-# class Class(db.Model):
-
-#     __tablename__ = 'classes'
-
-#     id = db.Column(db.Integer, primary_key=True)
-#     name = db.Column(db.String(128), unique=True)
-#     children = db.relationship("Student",
-#                     secondary=student_identifier)
-
-#     def __init__(self, name, children=[]):
-#         self.name = name
-#         self.children = children
-
 collection_guitars = db.Table('collection_guitars',
     db.Column('collection_id', db.Integer, db.ForeignKey('collections.id')),
     db.Column('guitar_id', db.Integer, db.ForeignKey('guitars.id'))
