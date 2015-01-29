@@ -1,0 +1,21 @@
+<nav class="brand-main-bg">
+    <div class="container">
+        <ul class="navigation navigation--horizontal">
+            <li class="navigation__item">
+                <p class="navigation__link navigation__link--active">Guitar collections</p>
+            </li>
+            <li class="navigation__item">
+                <a href="{{ url_for('collections.browse') }}" class="navigation__link">Browse</a>
+            </li>
+            {% if session.logged_in %}
+            <li class="navigation__item">
+                <a href="{{ url_for('account.dashboard') }}" class="navigation__link">My account</a>
+            </li>
+            {% else %}
+        <li class="navigation__item">
+            <a href="{{ url_for('users.login') }}" class="navigation__link">Log in</a>
+        </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>

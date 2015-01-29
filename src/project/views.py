@@ -2,7 +2,6 @@ from flask import flash, redirect, session, url_for, render_template, request, m
 from functools import wraps
 from random import randint
 
-
 from project import app, db
 from project.models import Collection, Guitar
 

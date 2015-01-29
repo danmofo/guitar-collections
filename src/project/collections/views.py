@@ -1,4 +1,4 @@
-from flask import Blueprint, session
+from flask import Blueprint, session, render_template, abort
 
 from project import db
 from project.views import login_required
@@ -15,11 +15,18 @@ collections_blueprint = Blueprint(
 @collections_blueprint.route('/add', methods=['GET', 'POST'])
 @login_required
 def add():
-    return 'Add a collection'
+    return render_template('add.jinja.html')
 
 @collections_blueprint.route('/browse', methods=['GET'])
 def browse():
-    return 'Browse collections'
+    return render_template('browse.jinja.html')
+
+@collections_blueprint.route('/browse/<int:collection_id>')
+def browse_specific(collection_id):
+    collection = Collection.query.filter_by(id=collection_id).first()
+    if collection is not None:
+        return render_template('browse_specific.jinja.html', collection=collection)
+    return abort(404)
 
 # todo: refactor this slightly, lots of repeated logic
 @collections_blueprint.route('/edit/<int:collection_id>')

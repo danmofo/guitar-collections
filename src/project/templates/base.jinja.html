@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
 </head>
 <body>
+    {% include 'sitewide_navigation.jinja.html' %}
     {% for message in get_flashed_messages() %}
         {{ message }}
     {% endfor %}
