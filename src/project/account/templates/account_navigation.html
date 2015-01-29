@@ -1,0 +1,23 @@
+<div class="brand-main-bg">
+    <ul class="navigation navigation--horizontal">
+        <li class="navigation__item">
+            <a href="{{ url_for('account.dashboard') }}"
+                class="navigation__link
+                {% if request.url_rule.endpoint == 'account.dashboard' %} navigation__link--active {% endif %}">
+                Dashboard
+            </a>
+        </li><!--
+        --><li class="navigation__item">
+            <a href="{{ url_for('account.details') }}"
+                class="navigation__link
+                {% if request.url_rule.endpoint == 'account.details' %} navigation__link--active {% endif %}">
+                Edit personal details
+            </a>
+        </li><!--
+        --><li class="navigation__item">
+            <a href="{{ url_for('users.logout') }}" class="navigation__link">Log out</a>
+        </li>
+
+    </ul>
+
+</div>

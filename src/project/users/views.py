@@ -26,12 +26,12 @@ def login():
     if request.method == 'POST':
         if login_form.validate_on_submit():
             user = User.query.filter_by(
-                email=login_form.email.data
+                username=login_form.username.data
             ).first()
 
             if user is not None:
                 session['logged_in'] = True
-                session['email'] = user.email
+                session['user_id'] = user.id
                 flash('You have successfully logged in!')
                 return redirect(url_for('account.dashboard'))
             else:
@@ -39,6 +39,14 @@ def login():
                 return render_template('login.html', form=login_form, error=error)
         else:
             return render_template('login.html', form=login_form)
+
+@users_blueprint.route('/logout', methods=['GET'])
+def logout():
+    if 'logged_in' in session:
+        session.pop('logged_in', None)
+        session.pop('user_id', None)
+        flash('You have been logged out successfully.')
+        return redirect(url_for('users.login'))
 
 
 @users_blueprint.route('/register', methods=['GET', 'POST'])
@@ -50,6 +58,7 @@ def register():
     if request.method == 'POST':
         if register_form.validate_on_submit():
             new_user = User(
+                register_form.username.data,
                 register_form.email.data,
                 register_form.password.data
             )
@@ -60,7 +69,7 @@ def register():
                 flash('Thank you for registering, please login.')
                 return redirect(url_for('users.login'))
             except IntegrityError:
-                error = 'Email already exists, please pick another email.'
+                error = 'Username or email already exist, please pick another email.'
                 return render_template('register.html', form=register_form, error=error)
         else:
             return render_template('register.html', form=register_form)

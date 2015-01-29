@@ -12,7 +12,7 @@ db.create_all()
 # Add dummy users
 # note: passwords are in plain text purely for the short-term
 db.session.add(
-    User('d@d.com', 'password')
+    User('admin', 'd@d.com', 'password')
 )
 
 # Add dummy collections

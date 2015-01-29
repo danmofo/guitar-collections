@@ -12,7 +12,17 @@ account_blueprint = Blueprint(
     static_folder='../assets'
 )
 
-@account_blueprint.route('/dashboard', methods=['GET', 'POST'])
+# this should probably live on the web server level
+@account_blueprint.route('/')
+def index():
+    return redirect(url_for('account.dashboard'))
+
+@account_blueprint.route('/dashboard')
 @login_required
 def dashboard():
     return render_template('dashboard.html')
+
+@account_blueprint.route('/details')
+@login_required
+def details():
+    return render_template('account_details.html')
