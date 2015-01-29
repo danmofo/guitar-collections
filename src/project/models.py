@@ -1,5 +1,7 @@
 from project import db
 
+from sqlalchemy import UniqueConstraint
+
 collection_guitars = db.Table('collection_guitars',
     db.Column('collection_id', db.Integer, db.ForeignKey('collections.id')),
     db.Column('guitar_id', db.Integer, db.ForeignKey('guitars.id'))
@@ -15,7 +17,7 @@ class User(db.Model):
     role        = db.Column(db.Integer, default=1)
     collections = db.relationship('Collection', backref='collections', lazy='dynamic')
 
-    def __init__(self, email, password, role):
+    def __init__(self, email, password, role=1):
         self.email = email
         self.password = password
         self.role = role
@@ -31,16 +33,17 @@ class Collection(db.Model):
 
     id          = db.Column(db.Integer, primary_key=True)
     name        = db.Column(db.String, nullable=False)
+    description = db.Column(db.String)
     created_on  = db.Column(db.Date, default=datetime.utcnow())
+    user        = db.relationship('User', backref='added_by')
     user_id     = db.Column(db.Integer, db.ForeignKey('users.id'))
     guitars     = db.relationship('Guitar',
                                     secondary='collection_guitars')
 
-    def __init__(self, name, created_on, user_id, guitars=[]):
+    def __init__(self, name, description, user_id):
         self.name = name
-        self.created_on = created_on
+        self.description = description
         self.user_id = user_id
-        self.guitars = guitars
 
     def __repr__(self):
         return '<Collection {}>'.format(self.name)
@@ -48,15 +51,20 @@ class Collection(db.Model):
 
 class Guitar(db.Model):
 
-    __tablename__ = 'guitars'
+    __tablename__   = 'guitars'
+    __table_args__  = (UniqueConstraint('model', 'year', name='unique_guitar'),)
 
-    id      = db.Column(db.Integer,primary_key=True)
-    brand   = db.Column(db.String, nullable=False)
-    model   = db.Column(db.String, nullable=False)
+    id          = db.Column(db.Integer,primary_key=True)
+    brand       = db.Column(db.String, nullable=False)
+    model       = db.Column(db.String, nullable=False)
+    year        = db.Column(db.Integer, nullable=False)
+    collections = db.relationship('Collection',
+                                    secondary='collection_guitars')
 
-    def __init__(self, brand, model):
+    def __init__(self, brand, model, year):
         self.brand = brand
         self.model = model
+        self.year = year
 
     def __repr__(self):
         return '<Guitar {}, {}>'.format(self.brand, self.model)

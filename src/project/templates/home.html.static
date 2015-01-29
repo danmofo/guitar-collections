@@ -21,27 +21,65 @@
         <!-- A list of featured collections -->
         <div class="collection-list">
 
-            {% for collection in featured_collections %}
+            <div class="collection-list__item">
+                <!-- A single collection with header image -->
+                <div class="collection collection--showimage">
+                    <img class="collection__picture" src="http://lorempixel.com/400/200" alt="" >
+                    <div class="collection__information">
+                        <h4 class="collection__title">Fender Classics</h4>
+                        <span class="collection__author">Submitted by <a href="">danmofo</a></span>
 
-                <div class="collection-list__item">
-                    <!-- A single collection with header image -->
-                    <div class="collection collection--showimage">
-                        <img class="collection__picture" src="http://lorempixel.com/400/200" alt="" >
-                        <div class="collection__information">
-                            <h4 class="collection__title">{{ collection.name }}</h4>
-                            <span class="collection__author">Submitted by <a href="">{{ collection.user.email }}</a></span>
-
-                            <p class="collection__description">{{ collection.description }}</p>
-                        </div>
-                        <a href="" class="button button--main button--block">View collection</a>
+                        <p class="collection__description">A classic collection featuring the best that Fender has to offer.</p>
                     </div>
+                    <a href="" class="button button--main button--block">View collection</a>
                 </div>
+            </div>
 
-            {% endfor %}
+            <div class="collection-list__item">
+                <!-- A single collection with header image -->
+                <div class="collection collection--showimage">
+                    <img class="collection__picture" src="http://lorempixel.com/400/200" alt="" >
+                    <div class="collection__information">
+                        <h4 class="collection__title">Fender Classics</h4>
+                        <span class="collection__author">Submitted by <a href="">danmofo</a></span>
+
+                        <p class="collection__description">A classic collection featuring the best that Fender has to offer.</p>
+                    </div>
+                    <a href="" class="button button--main button--block">View collection</a>
+                </div>
+            </div>
+
+            <div class="collection-list__item hide-small">
+                <!-- A single collection with header image -->
+                <div class="collection collection--showimage">
+                    <img class="collection__picture" src="http://lorempixel.com/400/200" alt="" >
+                    <div class="collection__information">
+                        <h4 class="collection__title">Fender Classics</h4>
+                        <span class="collection__author">Submitted by <a href="">danmofo</a></span>
+
+                        <p class="collection__description">A classic collection featuring the best that Fender has to offer.</p>
+                    </div>
+                    <a href="" class="button button--main button--block">View collection</a>
+                </div>
+            </div>
+
+            <div class="collection-list__item hide-medium">
+                <!-- A single collection with header image -->
+                <div class="collection collection--showimage">
+                    <img class="collection__picture" src="http://lorempixel.com/400/200" alt="" >
+                    <div class="collection__information">
+                        <h4 class="collection__title">Fender Classics</h4>
+                        <span class="collection__author">Submitted by <a href="">danmofo</a></span>
+
+                        <p class="collection__description">A classic collection featuring the best that Fender has to offer.</p>
+                    </div>
+                    <a href="" class="button button--main button--block">View collection</a>
+                </div>
+            </div>
 
         </div>
         <div class="band__cta text-center">
-            <h5 class="h4"><strong>{{ random_guitar.brand }} {{ random_guitar.model }}</strong> piqued your interest?</h5>
+            <h5 class="h4"><strong>Fender Mustang</strong> piqued your interest?</h5>
             <a href="" class="button button--main button--large">See all collections &#8594;</a>
         </div>
     </div>

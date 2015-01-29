@@ -1,22 +1,36 @@
-from project import app, db
-
-from flask import flash, redirect, session, url_for, render_template, request, make_response
+from flask import flash, redirect, session, url_for, render_template, request, make_response, session
 from functools import wraps
+from random import randint
+
+
+from project import app, db
+from project.models import Collection, Guitar
 
 # helpers
 def login_required(test):
     @wraps(test)
     def wrap(*args, **kwargs):
+        print session
         if 'logged_in' in session:
             return test(*args, **kwargs)
         else:
             flash('You need to login first.')
             return redirect(url_for('users.login'))
-
+    return wrap
 
 @app.route('/',)
 def index():
-    return render_template('home.html')
+    featured_collections = Collection.query.limit(4).all()
+    random_guitar = Guitar.query.filter_by(id=randint(1, 10)).first()
+
+    return render_template('home.html',
+                            featured_collections=featured_collections,
+                            random_guitar=random_guitar)
+
+@app.route('/dashboard')
+@login_required
+def dashboard():
+    return render_template('dashboard.html')
 
 # todo: add logging
 @app.errorhandler(404)
