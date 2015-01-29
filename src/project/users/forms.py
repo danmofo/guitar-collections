@@ -44,7 +44,5 @@ class LoginForm(Form):
 
     password = PasswordField(
         'Password',
-        validators=[
-            DataRequired()
-        ]
+        validators=[DataRequired()]
     )

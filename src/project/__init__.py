@@ -10,6 +10,8 @@ db = SQLAlchemy(app)
 from project import views, models
 from project.users.views import users_blueprint
 from project.account.views import account_blueprint
+from project.collections.views import collections_blueprint
 
 app.register_blueprint(users_blueprint)
 app.register_blueprint(account_blueprint)
+app.register_blueprint(collections_blueprint)
