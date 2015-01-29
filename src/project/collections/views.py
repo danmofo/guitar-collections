@@ -8,7 +8,7 @@ collections_blueprint = Blueprint(
     'collections',
     __name__,
     url_prefix='/collections',
-    template_folder='templates',
+    template_folder='../templates/collections',
     static_folder='../assets'
 )
 

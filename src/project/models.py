@@ -36,16 +36,18 @@ class Collection(db.Model):
     id          = db.Column(db.Integer, primary_key=True)
     name        = db.Column(db.String, nullable=False)
     description = db.Column(db.String)
+    image_url   = db.Column(db.String)
     created_on  = db.Column(db.Date, default=datetime.utcnow())
-    user        = db.relationship('User', backref='added_by')
     user_id     = db.Column(db.Integer, db.ForeignKey('users.id'))
+    user        = db.relationship('User', backref='added_by')
     guitars     = db.relationship('Guitar',
                                     secondary='collection_guitars')
 
-    def __init__(self, name, description, user_id):
+    def __init__(self, name, description, user_id, image_url=None):
         self.name = name
         self.description = description
         self.user_id = user_id
+        self.image_url = image_url
 
     def __repr__(self):
         return '<Collection {}>'.format(self.name)

@@ -23,23 +23,23 @@ def index():
     featured_collections = Collection.query.limit(4).all()
     random_guitar = Guitar.query.filter_by(id=randint(1, 10)).first()
 
-    return render_template('home.html',
+    return render_template('home.jinja.html',
                             featured_collections=featured_collections,
                             random_guitar=random_guitar)
 
 @app.route('/dashboard')
 @login_required
 def dashboard():
-    return render_template('dashboard.html')
+    return render_template('dashboard.jinja.html')
 
 # todo: add logging
 @app.errorhandler(404)
 def page_not_found(error):
     print error
-    return render_template('404.html'), 404
+    return render_template('404.jinja.html'), 404
 
 # todo: add logging
 @app.errorhandler(500)
 def internal_error(error):
     db.session.rollback()
-    return render_template('500.html'), 500
+    return render_template('500.jinja.html'), 500

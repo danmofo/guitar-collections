@@ -11,7 +11,7 @@ users_blueprint = Blueprint(
     'users',
     __name__,
     url_prefix='/users',
-    template_folder='templates',
+    template_folder='../templates/users',
     static_folder='../assets'
 )
 
@@ -21,7 +21,7 @@ def login():
     login_form = LoginForm(request.form)
 
     if request.method == 'GET':
-        return render_template('login.html', form=LoginForm(request.form))
+        return render_template('login.jinja.html', form=LoginForm(request.form))
 
     if request.method == 'POST':
         if login_form.validate_on_submit():
@@ -36,9 +36,9 @@ def login():
                 return redirect(url_for('account.dashboard'))
             else:
                 error = 'Invalid username or password, please try again'
-                return render_template('login.html', form=login_form, error=error)
+                return render_template('login.jinja.html', form=login_form, error=error)
         else:
-            return render_template('login.html', form=login_form)
+            return render_template('login.jinja.html', form=login_form)
 
 @users_blueprint.route('/logout', methods=['GET'])
 def logout():
@@ -53,7 +53,7 @@ def logout():
 def register():
     register_form = RegisterForm(request.form)
     if request.method == 'GET':
-        return render_template('register.html', form=register_form)
+        return render_template('register.jinja.html', form=register_form)
 
     if request.method == 'POST':
         if register_form.validate_on_submit():
@@ -70,6 +70,6 @@ def register():
                 return redirect(url_for('users.login'))
             except IntegrityError:
                 error = 'Username or email already exist, please pick another email.'
-                return render_template('register.html', form=register_form, error=error)
+                return render_template('register.jinja.html', form=register_form, error=error)
         else:
-            return render_template('register.html', form=register_form)
+            return render_template('register.jinja.html', form=register_form)
