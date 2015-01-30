@@ -35,15 +35,17 @@
     }
 }
 
-
+// Base collection styles
 .collection {
+    font-size: 1.6rem;
+}
+
+.collection--card {
     background-color: #FFFFFF;
     margin-bottom: 2rem;
 
     border: 1px solid #BBB;
     box-shadow: 0 2px 3px #BBB;
-
-    font-size: 1.6rem;
 }
 
 .collection--bare {

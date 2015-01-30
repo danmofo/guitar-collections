@@ -1,4 +1,5 @@
 {% extends 'base.jinja.html' %}
+{% from '_collection.jinja.html' import collection_card %}
 
 {% block content %}
 <!-- Call to action -->
@@ -22,27 +23,15 @@
         <div class="collection-list">
 
             {% for collection in featured_collections %}
-
                 <div class="collection-list__item">
-                    <!-- A single collection with header image -->
-                    <div class="collection collection--showimage">
-                        <img class="collection__picture" src="http://lorempixel.com/400/200" alt="" >
-                        <div class="collection__information">
-                            <h4 class="collection__title">{{ collection.name }}</h4>
-                            <span class="collection__author">Submitted by <a href="">{{ collection.user.email }}</a></span>
-
-                            <p class="collection__description">{{ collection.description }}</p>
-                        </div>
-                        <a href="" class="button button--main button--block">View collection</a>
-                    </div>
+                    {{ collection_card(collection) }}
                 </div>
-
             {% endfor %}
 
         </div>
         <div class="band__cta text-center">
             <h5 class="h4"><strong>{{ random_guitar.brand }} {{ random_guitar.model }}</strong> piqued your interest?</h5>
-            <a href="" class="button button--main button--large">See all collections &#8594;</a>
+            <a href="{{ url_for('collections.browse') }}" class="button button--main button--large">See all collections &#8594;</a>
         </div>
     </div>
 </section>

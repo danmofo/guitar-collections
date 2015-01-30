@@ -1,0 +1,23 @@
+{#
+    Contains the multiple variants a collection can appear as.
+
+    Collections generally have two states, an edit state and a view state.
+#}
+
+{% macro collection_card(collection, view='browse') %}
+    <div class="collection collection--card {% if collection.image_url %}collection--showimage {% endif %}">
+        {% if collection.image_url %}
+        <img class="collection__picture" src="{{ collection.image_url }}" alt="" >
+        {% endif %}
+        <div class="collection__information">
+            <h4 class="collection__title">{{ collection.name | truncate(20) }}</h4>
+
+            <p class="collection__description">{{ collection.description }}</p>
+        </div>
+        {% if view == 'browse' %}
+            <a href="{{ url_for('collections.browse', collection_id=collection.id) }}" class="button button--main button--block">View collection</a>
+        {% else %}
+            <a href="{{ url_for('collections.edit', collection_id=collection.id) }}" class="button button--alt button--block">Edit this collection</a>
+        {% endif %}
+    </div>
+{% endmacro %}

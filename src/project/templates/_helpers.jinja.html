@@ -1,3 +1,7 @@
+{#
+    Template helpers
+#}
+{# Renders errors from a form field #}
 {% macro render_field_errors(field) %}
     {% if field.errors %}
         <ul>

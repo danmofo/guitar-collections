@@ -17,10 +17,10 @@ db.session.add(
 
 # Add dummy collections
 db.session.add_all([
-    Collection('My collection!', 'This is my first collection.', 1),
-    Collection('My other collection', 'This is my second collection.', 1),
-    Collection('Fender Classics', 'This is my third collection.', 1),
-    Collection('Gibson Classics', 'This is my fourth collection.', 1),
+    Collection('My collection!', 'This is my first collection.', 1, 'http://lorempixel.com/400/200'),
+    Collection('My other collection', 'This is my second collection.', 1, 'http://lorempixel.com/400/200'),
+    Collection('Fender Classics', 'This is my third collection.', 1, 'http://lorempixel.com/400/200'),
+    Collection('Gibson Classics', 'This is my fourth collection.', 1, 'http://lorempixel.com/400/200')
 ])
 
 # Add dummy guitars
