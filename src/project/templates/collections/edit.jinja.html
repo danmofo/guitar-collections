@@ -1,0 +1,34 @@
+{% extends 'base.jinja.html' %}
+
+{% block content %}
+    <h1>Editing "{{ collection.name }}"</h1>
+
+    <form action="{{ url_for('collections.edit', collection_id=collection.id) }}" method="POST">
+        {{ form.csrf_token }}
+        <div>
+            {{ form.name.label }}
+            {{ form.name(value=collection.name) }}
+        </div>
+        <div>
+            {{ form.description.label }}
+            {{ form.description() }}
+        </div>
+        <div>
+            {% if collection.guitars %}
+                <ul>
+                    {% for guitar in collection.guitars %}
+                        <li>
+                            {{ guitar.brand }} {{ guitar.model }} ({{ guitar.year }})
+                            <a href="">Remove this guitar</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <a href="">Add another guitar to this list</a>
+
+            {% else %}
+                <p>No guitars in your collection yet, why not <a href="">Add some?</a></p>
+            {% endif %}
+
+        </div>
+    </form>
+{% endblock %}

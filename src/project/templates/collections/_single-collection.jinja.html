@@ -1,0 +1,17 @@
+{% macro render_collection(collection) %}
+<div class="collection-list__item">
+    <!-- A single collection with header image -->
+    <div class="collection {% if collection.image %}collection--showimage {% endif %}">
+        {% if collection.image %}
+        <img class="collection__picture" src="http://lorempixel.
+        com/400/200" alt="" >
+        {% endif %}
+        <div class="collection__information">
+            <h4 class="collection__title">{{ collection.name }}</h4>
+
+            <p class="collection__description">{{ collection.description }}</p>
+        </div>
+        <a href="{{ url_for('collections.edit', collection_id=collection.id) }}" class="button button--alt button--block">Edit this collection</a>
+    </div>
+</div>
+{% endmacro %}

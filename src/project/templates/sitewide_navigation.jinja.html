@@ -5,7 +5,10 @@
                 <p class="navigation__link navigation__link--active">Guitar collections</p>
             </li>
             <li class="navigation__item">
-                <a href="{{ url_for('collections.browse') }}" class="navigation__link">Browse</a>
+                <a href="{{ url_for('collections.browse') }}" class="navigation__link">Collections</a>
+            </li>
+            <li class="navigation__item">
+                <a href="{{ url_for('guitars.browse') }}" class="navigation__link">Guitars</a>
             </li>
             {% if session.logged_in %}
             <li class="navigation__item">
