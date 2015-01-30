@@ -1,24 +1,36 @@
-<nav class="brand-main-bg">
-    <div class="container">
-        <ul class="navigation navigation--horizontal">
-            <li class="navigation__item">
-                <p class="navigation__link navigation__link--active">Guitar collections</p>
-            </li>
-            <li class="navigation__item">
-                <a href="{{ url_for('collections.browse') }}" class="navigation__link">Collections</a>
-            </li>
-            <li class="navigation__item">
-                <a href="{{ url_for('guitars.browse') }}" class="navigation__link">Guitars</a>
-            </li>
-            {% if session.logged_in %}
-            <li class="navigation__item">
-                <a href="{{ url_for('account.dashboard') }}" class="navigation__link">My account</a>
-            </li>
-            {% else %}
-        <li class="navigation__item">
-            <a href="{{ url_for('users.login') }}" class="navigation__link">Log in</a>
-        </li>
-            {% endif %}
-        </ul>
+<header class="website-header">
+    <div class="brand-alt-bg">
+        <div class="container">
+            <a class="brand-logo link-unstyled" href="{{ url_for('index') }}">Guitar Collections</a>
+            <div class="account-actions">
+                <ul class="navigation navigation--horizontal">
+                    {% if session.logged_in %}
+                    <li class="navigation__item">
+                        <a href="{{ url_for('account.dashboard') }}" class="navigation__link">My account</a>
+                    </li><!--
+                    --><li class="navigation__item">
+                        <a href="{{ url_for('users.logout') }}" class="navigation__link">Logout</a>
+                    </li>
+                    {% else %}
+                    <li class="navigation__item">
+                        <a href="{{ url_for('users.login') }}" class="navigation__link">Log in</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
     </div>
-</nav>
+    <nav class="brand-main-bg">
+        <div class="container">
+            <ul class="navigation navigation--horizontal">
+                <li class="navigation__item">
+                    <a href="{{ url_for('collections.browse') }}" class="navigation__link">Collections</a>
+                </li>
+                <li class="navigation__item">
+                    <a href="{{ url_for('guitars.browse') }}" class="navigation__link">Guitars</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+

@@ -32,6 +32,25 @@
 // Specific - Page level specific styles
 @import 'specific/homepage';
 
+.brand-logo {
+    font-family: 'Muli';
+    font-size: 2.5rem;
+    display: block;
+    color: #FFFFFF;
+
+    margin-top: 13px;
+    @include span(4 of 12)
+}
+
+.website-header .navigation__link {
+    color: #FFFFFF;
+}
+
+.account-actions {
+    float: right;
+}
+
+
 .container {
     @include container();
     padding-left: 3rem;
