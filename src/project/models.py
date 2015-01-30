@@ -24,6 +24,12 @@ class User(db.Model):
         self.password = password
         self.role = role
 
+    def has_permission_to_edit(self, collection):
+        if collection is not None:
+            if collection.user_id == self.id or self.role == 2:
+                return True
+        return False
+
     def __repr__(self):
         return '<User {}>'.format(self.email)
 

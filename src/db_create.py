@@ -1,5 +1,6 @@
 # This script creates the tables and populates with initial dummy data.
 # Also doubles up as a test bed for queries
+# todo: move half of this into tests
 
 from project import db
 from project.models import Guitar, Collection, User
@@ -11,17 +12,51 @@ db.create_all()
 
 # Add dummy users
 # note: passwords are in plain text purely for the short-term
-db.session.add(
-    User('admin', 'd@d.com', 'password')
-)
+db.session.add_all([
+    User('admin', 'd@d.com', 'password'),
+    User('user123', 'user123@123.com', 'password'),
+    User('super', 'd@dan.com', 'password', 2)
+])
 
 # Add dummy collections
 db.session.add_all([
-    Collection('My collection!', 'This is my first collection.', 1, 'http://lorempixel.com/400/200'),
-    Collection('My other collection', 'This is my second collection.', 1, 'http://lorempixel.com/400/200'),
-    Collection('Fender Classics', 'This is my third collection.', 1, 'http://lorempixel.com/400/200'),
-    Collection('Gibson Classics', 'This is my fourth collection.', 1, 'http://lorempixel.com/400/200')
+    Collection(
+        'Personal collection!',
+        'This is my first collection.', 1,
+        'http://lorempixel.com/400/200'
+    ),
+    Collection(
+        'My other collection',
+        'This is my second collection.', 1,
+        'http://lorempixel.com/400/200'
+    ),
+    Collection(
+        'Fender Classics',
+        'This is my third collection.', 1,
+        'http://lorempixel.com/400/200'
+    ),
+    Collection(
+        'Gibson Classics',
+        'This is my fourth collection.', 1,
+        'http://lorempixel.com/400/200'
+    ),
+    Collection(
+        'Test Collection',
+        'This is a test', 2
+    )
 ])
+
+db.session.commit()
+
+admin = User.query.filter_by(id=1).first()
+superuser = User.query.filter_by(id=3).first()
+his = Collection.query.filter_by(id=1).first()
+not_his = Collection.query.filter_by(id=5).first()
+
+print admin.has_permission_to_edit(not_his)
+print admin.has_permission_to_edit(his)
+print superuser.has_permission_to_edit(not_his)
+print superuser.has_permission_to_edit(his)
 
 # Add dummy guitars
 db.session.add_all([
