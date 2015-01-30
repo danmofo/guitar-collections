@@ -1,4 +1,4 @@
-{% extends 'base.jinja.html' %}
+{% extends 'base_with_navigation.jinja.html' %}
 {% from '_helpers.jinja.html' import render_field_errors %}
 {% block content %}
     <h1>Log in</h1>
@@ -19,5 +19,4 @@
         <input type="submit" class="button button--main" value="Log in">
     </form>
     <p>Don't have an account yet? <a href="{{ url_for('users.register') }}">Register an account</a></p>
-
 {% endblock %}

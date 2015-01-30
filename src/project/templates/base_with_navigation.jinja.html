@@ -1,0 +1,8 @@
+{#
+    This is the base template with a header / site navigation added,
+    used on almost every page apart from the homepage.
+#}
+{% extends 'base.jinja.html' %}
+{% block navigation %}
+    {% include 'sitewide_navigation.jinja.html' %}
+{% endblock %}

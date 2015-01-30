@@ -1,16 +1,28 @@
+{#
+    This is the base template, all other templates inherit from this,
+    it doesn't include a site wide navigation or header. Those are in
+    base_with_navigation.jinja.html.
+
+    Blocks you can edit:
+    - page_title
+    - page_description
+    - content
+#}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Guitar Collections</title>
-    <meta name="description" content="A website for sad bastards like me to show off their guitar collections">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href='http://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>{% block page_title %}Guitar Collections{% endblock %}</title>
+    <meta name="description" content="{% block page_description %}A website for sad bastards like me to show off their guitar collections {% endblock %}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href='http://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}" />
 </head>
 <body>
-    {% include 'sitewide_navigation.jinja.html' %}
+    {% block navigation %}
+    {% endblock %}
+
     {% for message in get_flashed_messages() %}
         {{ message }}
     {% endfor %}

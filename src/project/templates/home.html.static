@@ -1,4 +1,4 @@
-{% extends 'base.jinja.html' %}
+{% extends 'base_with_navigation.jinja.html' %}
 
 {% block content %}
 <!-- Call to action -->
