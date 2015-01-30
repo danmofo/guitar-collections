@@ -1,4 +1,4 @@
-from flask import Blueprint, session, render_template, abort, request
+from flask import Blueprint, session, render_template, abort, request, flash, redirect, url_for
 
 from project import db
 from project.views import login_required
@@ -63,6 +63,20 @@ def add_guitar(collection_id, guitar_id):
             '({})'.format(guitar.year),
             collection.name
         )
+@collections_blueprint.route('/edit/<int:collection_id>/delete/<int:guitar_id>', methods=['GET'])
+def remove_guitar(collection_id, guitar_id):
+    guitar = Guitar.query.filter_by(id=guitar_id).first()
+    collection = Collection.query.filter_by(id=collection_id).first()
+
+    if session['user_id'] == collection.user.id:
+        collection.remove_guitar(guitar)
+        db.session.commit()
+        flash('Guitar removed from collection')
+
+    return redirect(url_for('collections.edit', collection_id=collection_id))
+
+
+
 
 # todo: make POST only
 @collections_blueprint.route('/delete/<int:collection_id>')

@@ -19,7 +19,7 @@
                     {% for guitar in collection.guitars %}
                         <li>
                             {{ guitar.brand }} {{ guitar.model }} ({{ guitar.year }})
-                            <a href="">Remove this guitar</a>
+                            <a href="{{ url_for('collections.remove_guitar', collection_id=collection.id, guitar_id=guitar.id) }}">Remove this guitar</a>
                         </li>
                     {% endfor %}
                 </ul>

@@ -53,8 +53,13 @@ db.session.add(
 
 collection = Collection.query.filter_by(id=1).first()
 
-collection.guitars.append(
-    Guitar.query.filter_by(id=1).first()
-)
+gibsons = Guitar.query.filter_by(brand='Gibson').all()
+fenders = Guitar.query.filter_by(brand='Fender').all()
+
+collection.add_guitars(gibsons)
+collection.add_guitars(fenders)
+
+collection.remove_guitars(fenders)
+
 
 db.session.commit()

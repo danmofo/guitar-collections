@@ -49,6 +49,32 @@ class Collection(db.Model):
         self.user_id = user_id
         self.image_url = image_url
 
+    def add_guitar(self, guitar):
+        "Add a single guitar to the current collection"
+        if guitar is not None and guitar not in self.guitars:
+            self.guitars.append(guitar)
+            return True
+        return False
+
+    def add_guitars(self, guitar_list):
+        "Add multiple guitars to the current collection"
+        if guitar_list is not None:
+            for guitar in guitar_list:
+                self.add_guitar(guitar)
+
+    def remove_guitar(self, guitar):
+        "Remove a guitar from the current collection"
+        if guitar is not None and guitar in self.guitars:
+            self.guitars.remove(guitar)
+            return True
+        return False
+
+    def remove_guitars(self, guitar_list):
+        "Remove multiple guitars from the current collection"
+        if guitar_list is not None:
+            for guitar in guitar_list:
+                self.remove_guitar(guitar)
+
     def __repr__(self):
         return '<Collection {}>'.format(self.name)
 
