@@ -13,22 +13,26 @@
             {{ form.description.label }}
             {{ form.description() }}
         </div>
-        <div>
-            {% if collection.guitars %}
-                <ul>
-                    {% for guitar in collection.guitars %}
-                        <li>
-                            {{ guitar.brand }} {{ guitar.model }} ({{ guitar.year }})
-                            <a href="{{ url_for('collections.remove_guitar', collection_id=collection.id, guitar_id=guitar.id) }}">Remove this guitar</a>
-                        </li>
-                    {% endfor %}
-                </ul>
-                <a href="">Add another guitar to this list</a>
 
-            {% else %}
-                <p>No guitars in your collection yet, why not <a href="">Add some?</a></p>
-            {% endif %}
+        <input type="submit" class="button button--main" value="Edit">
 
-        </div>
     </form>
+
+    <div>
+        <h2>List of guitars in this collection</h2>
+        {% if collection.guitars %}
+            <ul>
+                {% for guitar in collection.guitars %}
+                    <li>
+                        {{ guitar.brand }} {{ guitar.model }} ({{ guitar.year }})
+                        <a href="{{ url_for('collections.remove_guitar', collection_id=collection.id, guitar_id=guitar.id) }}">Remove this guitar</a>
+                    </li>
+                {% endfor %}
+            </ul>
+            <a href="" class="button button--main">Add another guitar to this list</a>
+
+        {% else %}
+            <p>No guitars in your collection yet, why not <a href="">Add some?</a></p>
+        {% endif %}
+    </div>
 {% endblock %}

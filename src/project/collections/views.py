@@ -20,7 +20,9 @@ def add():
 
 @collections_blueprint.route('/browse', methods=['GET'])
 def browse():
-    return render_template('browse.jinja.html')
+    collections = Collection.query.all()
+    return render_template('browse.jinja.html',
+                            collections=collections)
 
 @collections_blueprint.route('/browse/<int:collection_id>')
 def browse_specific(collection_id):
@@ -34,19 +36,26 @@ def browse_specific(collection_id):
 @login_required
 def edit(collection_id):
     edit_collection_form = EditCollectionForm(request.form)
-    collection = Collection.query.filter_by(id=collection_id).first()
+    collection_query = Collection.query.filter_by(id=collection_id)
+    collection = collection_query.first()
+
     if collection is not None:
-        if request.method == 'GET':
-            if collection.user.id == session['user_id']:
+        if collection.user.id == session['user_id']:
+            if request.method == 'GET':
                 # This is really crap, can't find a better way..
                 edit_collection_form.description.data = collection.description
                 return render_template('edit.jinja.html',
                                         collection=collection,
                                         form=edit_collection_form)
-            return 'You cant edit someone elses'
-        if request.method == 'POST':
-            # todo: verify user owns the collection
-            pass
+            if request.method == 'POST':
+                collection_query.update({
+                    'name': edit_collection_form.name.data,
+                    'description': edit_collection_form.description.data
+                })
+                db.session.commit()
+                flash('Collection updated successfully.')
+                return redirect(url_for('collections.edit', collection_id=collection_id))
+        return 'You cant edit someone elses'
 
     return 'Collection doesnt exist!'
 
