@@ -75,9 +75,7 @@ db.session.add_all([
 db.session.commit()
 
 try:
-    db.session.add(
-        Guitar('Gretch', 'Electromatic', 2014)
-    )
+    db.session.add(Guitar('Gretch', 'Electromatic', 2014))
     db.session.commit()
 except IntegrityError:
     db.session.rollback()
