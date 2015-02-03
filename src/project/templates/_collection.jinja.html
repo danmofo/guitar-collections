@@ -15,9 +15,13 @@
             <p class="collection__description">{{ collection.description }}</p>
         </div>
         {% if view == 'browse' %}
-            <a href="{{ url_for('collections.browse', collection_id=collection.id) }}" class="button button--main button--block">View collection</a>
+            <a href="{{ url_for('collections.browse_specific', collection_id=collection.id) }}" class="button button--main button--block">View collection</a>
         {% else %}
             <a href="{{ url_for('collections.edit', collection_id=collection.id) }}" class="button button--alt button--block">Edit this collection</a>
         {% endif %}
     </div>
+{% endmacro %}
+
+{% macro collection_list_item(collection) %}
+
 {% endmacro %}

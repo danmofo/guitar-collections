@@ -39,25 +39,33 @@ def edit(collection_id):
     collection_query = Collection.query.filter_by(id=collection_id)
     collection = collection_query.first()
 
-    if collection is not None:
-        if collection.user.id == session['user_id']:
-            if request.method == 'GET':
-                # This is really crap, can't find a better way..
-                edit_collection_form.description.data = collection.description
-                return render_template('edit.jinja.html',
-                                        collection=collection,
-                                        form=edit_collection_form)
-            if request.method == 'POST':
-                collection_query.update({
-                    'name': edit_collection_form.name.data,
-                    'description': edit_collection_form.description.data
-                })
-                db.session.commit()
-                flash('Collection updated successfully.')
-                return redirect(url_for('collections.edit', collection_id=collection_id))
-        return 'You cant edit someone elses'
+    # Collection doesnt exist
+    if collection is None:
+        flash('Collection doesnt exist.')
+        return redirect(url_for('collections.browse'))
 
-    return 'Collection doesnt exist!'
+    # Probably quicker to just compare against session['user_id']
+    if collection.user.has_permission_to_edit(collection):
+        if request.method == 'GET':
+            # This is really crap, can't find a better way..
+            edit_collection_form.description.data = collection.description
+            return render_template('edit.jinja.html',
+                                    collection=collection,
+                                    form=edit_collection_form)
+        if request.method == 'POST':
+            collection_query.update({
+                'name': edit_collection_form.name.data,
+                'description': edit_collection_form.description.data
+            })
+            db.session.commit()
+            flash('Collection updated successfully.')
+            return redirect(url_for('collections.edit', collection_id=collection_id))
+
+
+    # User doesn't have sufficient permissions
+    flash('You dont have permission to edit this collection!')
+    return redirect(url_for('collections.browse_specific',
+                            collection_id=collection_id))
 
 # This is probably really bad and I should think of a better way to do this!
 @collections_blueprint.route('/edit/<int:collection_id>/add/<int:guitar_id>')

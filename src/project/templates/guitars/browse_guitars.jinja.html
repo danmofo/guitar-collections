@@ -1,5 +1,12 @@
 {% extends 'base_with_navigation.jinja.html' %}
 
 {% block content %}
-    <h1>Browse guitars</h1>
+    <div class="container">
+        <h1>Browse guitars</h1>
+        <ul class="">
+        {% for guitar in guitars %}
+            <li>{{ guitar.brand }} {{ guitar.model }} ({{ guitar.year }})</li>
+        {% endfor %}
+        </ul>
+    </div>
 {% endblock %}

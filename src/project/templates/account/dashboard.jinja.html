@@ -1,8 +1,10 @@
 {% extends 'base_with_navigation.jinja.html' %}
 
 {% block content %}
-    {% include 'account_navigation.jinja.html' %}
+    <div class="container">
+        <h1>Dashboard</h1>
+        <p>Welcome back <strong>{{ user.username }}</strong></p>
 
-    <h1>Dashboard</h1>
-    <p>Welcome back <strong>{{ user.username }}</strong></p>
+        {% include 'account_navigation.jinja.html' %}
+    </div>
 {% endblock %}

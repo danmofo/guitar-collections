@@ -13,4 +13,9 @@ guitars_blueprint = Blueprint(
 )
 @guitars_blueprint.route('/browse')
 def browse():
-    return render_template('browse_guitars.jinja.html')
+    guitars = Guitar.query.all()
+    return render_template('browse_guitars.jinja.html', guitars=guitars)
+
+@guitars_blueprint.route('/browse/<int:guitar_id>')
+def browse_specific(guitar_id):
+    pass

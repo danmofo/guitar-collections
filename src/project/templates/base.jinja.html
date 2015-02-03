@@ -23,15 +23,20 @@
     {% block navigation %}
     {% endblock %}
 
-    {% for message in get_flashed_messages() %}
-        {{ message }}
-    {% endfor %}
+
 
     {% if error %}
         {{ error }}
     {% endif %}
-    {% block content %}
-    {% endblock %}
+    <div class="content">
+        {% for message in get_flashed_messages() %}
+            {{ message }}
+        {% endfor %}
+
+
+        {% block content %}
+        {% endblock %}
+    </div>
     <!-- Global website footer -->
     <footer class="footer">
         <div class="container">

@@ -1,8 +1,10 @@
 {% extends 'base_with_navigation.jinja.html' %}
-{% from '_single-collection.jinja.html' import render_collection, external_collection %}
+{% from '_collection.jinja.html' import collection_card %}
 {% block content %}
-    <h1>Browse collections</h1>
-    {% for collection in collections %}
-        {{ external_collection(collection) }}
-    {% endfor %}
+    <div class="container">
+        <h1>Browse collections</h1>
+        {% for collection in collections %}
+            {{ collection_card(collection) }}
+        {% endfor %}
+    </div>
 {% endblock %}

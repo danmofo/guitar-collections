@@ -32,6 +32,15 @@
 // Specific - Page level specific styles
 @import 'specific/homepage';
 
+.content {
+    background-color: #EEE;
+    padding-bottom: 4rem;
+}
+
+.footer {
+
+}
+
 .brand-logo {
     font-family: 'Muli';
     font-size: 2.5rem;
@@ -53,6 +62,7 @@
 
 .container {
     @include container();
+    overflow: auto;
     padding-left: 3rem;
     padding-right: 3rem;
 }

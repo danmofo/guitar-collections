@@ -1,28 +1,14 @@
 <div>
-    <ul class="">
-        <li class="navigation__item">
-            <a href="{{ url_for('account.dashboard') }}"
-                class="navigation__link
-                {% if request.url_rule.endpoint == 'account.dashboard' %} navigation__link--active {% endif %}">
-                Dashboard
-            </a>
-        </li><!--
-        --><li class="navigation__item">
-            <a href="{{ url_for('account.details') }}"
-                class="navigation__link
-                {% if request.url_rule.endpoint == 'account.details' %} navigation__link--active {% endif %}">
+    <ul class="list-unstyled">
+        <li>
+            <a href="{{ url_for('account.details') }}">
                 Edit personal details
             </a>
-        </li><!--
-        --><li class="navigation__item">
-            <a href="{{ url_for('account.my_collections') }}"
-                class="navigation__link
-                {% if request.url_rule.endpoint == 'account.my_collections' %} navigation__link--active {% endif %}">
+        </li>
+        <li>
+            <a href="{{ url_for('account.my_collections') }}">
                 My collections
             </a>
-        </li><!--
-        --><li class="navigation__item">
-            <a href="{{ url_for('users.logout') }}" class="navigation__link">Log out</a>
         </li>
 
     </ul>

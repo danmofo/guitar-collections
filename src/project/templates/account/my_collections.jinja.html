@@ -1,16 +1,13 @@
 {% extends 'base_with_navigation.jinja.html' %}
-
+{% from '_collection.jinja.html' import collection_card %}
 {% block content %}
-    {% include 'account_navigation.jinja.html' %}
-    {% from '_single-collection.jinja.html' import render_collection %}
     <div class="container">
-
-    <h1>My collections</h1>
-    <p>Here are a list of all your collections.</p>
-    {% if collections %}
-        {% for collection in collections %}
-            {{ render_collection(collection) }}
-        {% endfor %}
-    {% endif %}
+        <h1>My collections</h1>
+        <p>Here are a list of all your collections.</p>
+        {% if collections %}
+            {% for collection in collections %}
+                {{ collection_card(collection) }}
+            {% endfor %}
+        {% endif %}
     </div>
 {% endblock %}

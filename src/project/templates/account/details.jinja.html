@@ -1,9 +1,13 @@
 {% extends 'base_with_navigation.jinja.html' %}
 
 {% block content %}
-    {% include 'account_navigation.jinja.html' %}
+        <div class="container">
+        <h1>Account details</h1>
+        <p>Edit account details here</p>
+        <ul>
+            <li><strong>Username: </strong> </li>
+        </ul>
 
-    <h1>Account details</h1>
-    {{ user.username }}
-    <p>Hello world!</p>
+        {% include 'account_navigation.jinja.html' %}
+    </div>
 {% endblock %}
