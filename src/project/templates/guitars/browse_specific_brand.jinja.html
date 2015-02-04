@@ -1,0 +1,16 @@
+{% extends 'base_with_navigation.jinja.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1>Browsing {{ brand }} guitars</h1>
+        <ul class="">
+        {% for guitar in guitars %}
+            <li>
+                <a href="{{ url_for('guitars.browse_by_year', brand=guitar.brand, model=guitar.model, year=guitar.year) }}">
+                {{ guitar.brand }} {{ guitar.model }} ({{ guitar.year }})
+                </a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

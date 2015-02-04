@@ -23,23 +23,32 @@ def browse():
 @guitars_blueprint.route('/<brand>')
 def browse_by_brand(brand):
     guitars = Guitar.query.filter_by(brand=brand).all()
-    print guitars
-    return ''
+
+    return render_template('browse_specific_brand.jinja.html',
+                            guitars=guitars,
+                            brand=brand)
 
 # e.g. /guitars/Gibson/SG
 @guitars_blueprint.route('/<brand>/<model>')
 def browse_by_model(brand, model):
     guitars = Guitar.query.filter_by(brand=brand, model=model).all()
-    print guitars
-    return ''
+
+    return render_template('browse_specific_brand-model.jinja.html',
+                            guitars=guitars,
+                            brand=brand,
+                            model=model)
 
 # e.g. /guitars/Gibson/SG/2015
 @guitars_blueprint.route('/<brand>/<model>/<int:year>')
 def browse_by_year(brand, model, year):
-    guitars = Guitar.query.filter_by(
+    guitar = Guitar.query.filter_by(
         brand=brand,
         model=model,
-        year = year
-    ).all()
-    print guitars
-    return ''
+        year=year
+    ).first()
+
+    return render_template('browse_specific_brand-model-year.jinja.html',
+                            guitar=guitar,
+                            brand=brand,
+                            model=model,
+                            year=year)
