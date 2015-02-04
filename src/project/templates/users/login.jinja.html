@@ -1,22 +1,24 @@
 {% extends 'base_with_navigation.jinja.html' %}
 {% from '_helpers.jinja.html' import render_field_errors %}
 {% block content %}
-    <h1>Log in</h1>
-    <p>To perform this action you need to be logged in.</p>
-    <form action="{{ url_for('users.login') }}" method="POST">
-        {{ form.csrf_token }}
-        <div>
-            {{ form.username.label }}
-            {{ form.username(placeholder='Enter your username') }}
-            {{ render_field_errors(form.username) }}
-        </div>
-        <div>
-            {{ form.password.label }}
-            {{ form.password(placeholder='Your password') }}
-            {{ render_field_errors(form.password) }}
-        </div>
+    <div class="container">
+        <h1 class="content__maintitle">Log in</h1>
+        <p>To perform this action you need to be logged in.</p>
+        <form action="{{ url_for('users.login') }}" method="POST">
+            {{ form.csrf_token }}
+            <div>
+                {{ form.username.label }}
+                {{ form.username(placeholder='Enter your username') }}
+                {{ render_field_errors(form.username) }}
+            </div>
+            <div>
+                {{ form.password.label }}
+                {{ form.password(placeholder='Your password') }}
+                {{ render_field_errors(form.password) }}
+            </div>
 
-        <input type="submit" class="button button--main" value="Log in">
-    </form>
-    <p>Don't have an account yet? <a href="{{ url_for('users.register') }}">Register an account</a></p>
+            <input type="submit" class="button button--main" value="Log in">
+        </form>
+        <p>Don't have an account yet? <a href="{{ url_for('users.register') }}">Register an account</a></p>
+    </div>
 {% endblock %}
