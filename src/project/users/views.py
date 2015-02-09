@@ -19,7 +19,8 @@ users_blueprint = Blueprint(
 def login():
     error = None
     login_form = LoginForm(request.form)
-
+    print request.path
+    print request.query_string
     if request.method == 'GET':
         return render_template('login.jinja.html', form=LoginForm(request.form))
 

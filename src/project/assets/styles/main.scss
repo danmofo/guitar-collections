@@ -28,9 +28,11 @@
 @import 'components/button';
 @import 'components/navigation';
 @import 'components/collection';
+@import 'components/form';
 
 // Specific - Page level specific styles
 @import 'specific/homepage';
+@import 'specific/login';
 
 .content {
     background-color: #EEE;
@@ -43,12 +45,12 @@
 
 .brand-logo {
     font-family: 'Muli';
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     display: block;
     color: #FFFFFF;
 
-    margin-top: 13px;
-    @include span(4 of 12)
+    margin-top: 15px;
+    float: left;
 }
 
 .website-header .navigation__link {

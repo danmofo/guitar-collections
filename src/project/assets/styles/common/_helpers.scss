@@ -16,6 +16,17 @@
     color: #FFF;
 }
 
+// Used to provide a maximum width for paragraphs of text
+.text-constrain {
+    max-width: 70rem;
+}
+
+.text-constrain--center {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
 // These are shamelessly taken from Bootstrap
 .text-center {
     text-align: center;

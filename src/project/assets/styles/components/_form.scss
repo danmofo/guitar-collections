@@ -1,0 +1,30 @@
+// A single forn
+
+
+.form {
+
+}
+
+.form__group {
+    margin-bottom: 2.5rem;
+}
+
+.form__label {
+    text-align: left;
+    display: block;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.form__field {
+    display: block;
+    border: 0;
+    padding: 1.5rem 2.5rem;
+    width: 100%;
+}
+
+.form--login,
+.form--register {
+    max-width: 50rem;
+    margin: 5rem auto;
+}

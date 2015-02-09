@@ -1,31 +1,33 @@
 {% extends 'base_with_navigation.jinja.html' %}
 {% from '_helpers.jinja.html' import render_field_errors %}
 {% block content %}
-    <h1>Register</h1>
-    <p>Register a new account with us:</p>
-    <form action="{{ url_for('users.register') }}" method="POST">
-        {{ form.csrf_token }}
-        <div>
-            {{ form.username.label }} {{ form.username(placeholder='Enter your username') }}
-            {{ render_field_errors(form.username) }}
-        </div>
-        <div>
-            {{ form.email.label }} {{ form.email(placeholder='Enter your email') }}
-            {{ render_field_errors(form.email) }}
-        </div>
-        <div>
-            {{ form.password.label }}
-            {{ form.password(placeholder='Password') }}
-            {{ render_field_errors(form.password) }}
-        </div>
-        <div>
-            {{ form.confirm_password.label }}
-            {{ form.confirm_password(placeholder='Enter your password again') }}
-            {{ render_field_errors(form.confirm_password) }}
-        </div>
+    <div class="container">
+        <h1 class="content__maintitle text-center">Register an account</h1>
+        <p class="text-constrain text-constrain--center">Registering an account is not mandatory to view the collections listed on the website and is only necessary when you want to list your collection.</p>
+        <form class="form--register" action="{{ url_for('users.register') }}" method="POST">
+            {{ form.csrf_token }}
+            <div class="form__group">
+                {{ form.username.label(class='form__label') }} {{ form.username(placeholder='Enter your username', class='form__field') }}
+                {{ render_field_errors(form.username) }}
+            </div>
+            <div class="form__group">
+                {{ form.email.label(class='form__label') }} {{ form.email(placeholder='Enter your email', class='form__field') }}
+                {{ render_field_errors(form.email) }}
+            </div>
+            <div class="form__group">
+                {{ form.password.label(class='form__label') }}
+                {{ form.password(placeholder='Password', class='form__field') }}
+                {{ render_field_errors(form.password) }}
+            </div>
+            <div class="form__group">
+                {{ form.confirm_password.label(class='form__label') }}
+                {{ form.confirm_password(placeholder='Enter your password again', class='form__field') }}
+                {{ render_field_errors(form.confirm_password) }}
+            </div>
 
-        <input type="submit" class="button button--main" value="Register account">
-    </form>
-    <p>Already have an account? <a href="{{ url_for('users.login') }}">Login here</a></p>
+            <input type="submit" class="button button--main" value="Register account">
+        </form>
+        <p class="text-constrain text-constrain--center">Already have an account? <a href="{{ url_for('users.login') }}">Login here</a></p>
+    </div>
 
 {% endblock %}
