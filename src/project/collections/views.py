@@ -20,9 +20,11 @@ def add():
 
 @collections_blueprint.route('/browse', methods=['GET'])
 def browse():
-    collections = Collection.query.all()
+    featured_collections = Collection.query.filter_by(featured=1).all()
+    all_collections = Collection.query.all()
     return render_template('browse.jinja.html',
-                            collections=collections)
+                            featured_collections=featured_collections,
+                            all_collections=all_collections)
 
 @collections_blueprint.route('/browse/<int:collection_id>')
 def browse_specific(collection_id):

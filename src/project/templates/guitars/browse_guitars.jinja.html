@@ -2,13 +2,15 @@
 
 {% block content %}
     <div class="container">
-        <h1>Browse guitars</h1>
+        <h1 class="content__maintitle">Guitars</h1>
+
+        <h2>Random guitars</h2>
         <ul class="">
         {% for guitar in guitars %}
             <li>
                 <a href="{{ url_for('guitars.browse_by_year', brand=guitar.brand, model=guitar.model, year=guitar.year) }}">
                 {{ guitar.brand }} {{ guitar.model }} ({{ guitar.year }})
-                </a>
+                </a>, see all {{ guitar.brand }} guitars <a href="{{ url_for('guitars.browse_by_brand', brand=guitar.brand)}}">here</a>
             </li>
         {% endfor %}
         </ul>

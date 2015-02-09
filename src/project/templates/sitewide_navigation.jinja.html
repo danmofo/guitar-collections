@@ -6,7 +6,7 @@
                 <ul class="navigation navigation--horizontal">
                     {% if session.logged_in %}
                     <li class="navigation__item">
-                        <a href="{{ url_for('account.dashboard') }}" class="navigation__link">My account</a>
+                        Logged in as <a href="{{ url_for('users.profile', username=session.username) }}" class="">{{ session.username }}</a>
                     </li><!--
                     --><li class="navigation__item">
                         <a href="{{ url_for('users.logout') }}" class="navigation__link">Logout</a>
@@ -23,6 +23,11 @@
     <nav class="brand-main-bg">
         <div class="container">
             <ul class="navigation navigation--horizontal">
+                {% if session.logged_in %}
+                <li class="navigation__item">
+                    <a href="{{ url_for('account.dashboard') }}" class="navigation__link">Dashboard</a>
+                </li>
+                {% endif %}
                 <li class="navigation__item">
                     <a href="{{ url_for('collections.browse') }}" class="navigation__link">Collections</a>
                 </li>

@@ -1,10 +1,24 @@
 {% extends 'base_with_navigation.jinja.html' %}
-{% from '_collection.jinja.html' import collection_card %}
 {% block content %}
     <div class="container">
-        <h1>Browse collections</h1>
-        {% for collection in collections %}
-            {{ collection_card(collection) }}
-        {% endfor %}
+        <h1 class="content__maintitle">Collections</h1>
+
+        <h2 class="content__subtitle">Featured collections</h2>
+        <p>Here are some collections we've picked out especially for their value.</p>
+        <ul>
+            {% for collection in featured_collections %}
+                <li><a href="{{ url_for('collections.browse_specific', collection_id=collection.id) }}">
+                    {{ collection.name }}
+                </a> added by <a href="{{ url_for('users.profile', username=collection.user.username) }}">{{ collection.user.username }}</a></li>
+            {% endfor %}
+        </ul>
+        <h2 class="content__subtitle">All collections</h2>
+        <ul>
+            {% for collection in all_collections %}
+                <li><a href="{{ url_for('collections.browse_specific', collection_id=collection.id) }}">
+                    {{ collection.name }}
+                </a> added by <a href="{{ url_for('users.profile', username=collection.user.username) }}">{{ collection.user.username }}</a></li>
+            {% endfor %}
+        </ul>
     </div>
 {% endblock %}

@@ -1,12 +1,22 @@
 {% extends 'base_with_navigation.jinja.html' %}
-
+{% from '_helpers.jinja.html' import render_field_errors %}
 {% block content %}
-        <div class="container">
+    <div class="container">
         <h1>Account details</h1>
         <p>Edit account details here</p>
-        <ul>
-            <li><strong>Username: </strong> </li>
-        </ul>
+        <form action="{{ url_for('account.details') }}" method="POST">
+            {{ form.csrf_token }}
+            <div class="form__group">
+                {{ form.username.label(class='form__label') }}
+                {{ form.username(value=user.username, class='form__field') }}
+                {{ render_field_errors(form.username) }}
+            </div>
+
+
+
+            <input type="submit" class="button button--main" value="Edit">
+
+        </form>
 
         {% include 'account_navigation.jinja.html' %}
     </div>

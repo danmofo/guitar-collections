@@ -1,0 +1,12 @@
+{% extends 'base_with_navigation.jinja.html' %}
+{% block content %}
+    <div class="container">
+        <h1 class="content__maintitle">{{ user.username }}'s profile.</h1>
+        <p>Here are some collections we've picked out especially for their value.</p>
+        <ul>
+            {% for collection in user.collections %}
+                <li><a href="{{ url_for('collections.browse_specific', collection_id=collection.id) }}">{{ collection.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

@@ -5,9 +5,11 @@
         <h1>My collections</h1>
         <p>Here are a list of all your collections.</p>
         {% if collections %}
+            <ul>
             {% for collection in collections %}
-                {{ collection_card(collection) }}
+                <li>{{ collection.name }}</li>
             {% endfor %}
+            </ul>
         {% endif %}
     </div>
 {% endblock %}

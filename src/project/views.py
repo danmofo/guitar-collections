@@ -2,7 +2,7 @@ from flask import flash, redirect, session, url_for, render_template, request, m
 from functools import wraps
 from random import randint
 
-from project import app, db
+from project        import app, db
 from project.models import Collection, Guitar
 
 # helpers
@@ -19,7 +19,10 @@ def login_required(test):
 
 @app.route('/',)
 def index():
-    featured_collections = Collection.query.limit(4).all()
+    if 'logged_in' in session:
+        return redirect(url_for('collections.browse'))
+
+    featured_collections = Collection.query.filter_by(featured=1).limit(4).all()
     random_guitar = Guitar.query.filter_by(id=randint(1, 10)).first()
 
     return render_template('home.jinja.html',

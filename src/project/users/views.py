@@ -15,12 +15,15 @@ users_blueprint = Blueprint(
     static_folder='../assets'
 )
 
+@users_blueprint.route('/profile/<username>',)
+def profile(username):
+    user = User.query.filter_by(username=username).first()
+    return render_template('profile.jinja.html', user=user)
+
 @users_blueprint.route('/login', methods=['GET', 'POST'])
 def login():
     error = None
     login_form = LoginForm(request.form)
-    print request.path
-    print request.query_string
     if request.method == 'GET':
         return render_template('login.jinja.html', form=LoginForm(request.form))
 
@@ -32,7 +35,9 @@ def login():
 
             if user is not None:
                 session['logged_in'] = True
+                # todo: find a better way to store user information
                 session['user_id'] = user.id
+                session['username'] = user.username
                 flash('You have successfully logged in!')
                 return redirect(url_for('account.dashboard'))
             else:
@@ -41,11 +46,12 @@ def login():
         else:
             return render_template('login.jinja.html', form=login_form)
 
-@users_blueprint.route('/logout', methods=['GET'])
+@users_blueprint.route('/logout',)
 def logout():
     if 'logged_in' in session:
         session.pop('logged_in', None)
         session.pop('user_id', None)
+        session.pop('username', None)
         flash('You have been logged out successfully.')
         return redirect(url_for('users.login'))
 

@@ -44,16 +44,18 @@ class Collection(db.Model):
     description = db.Column(db.String)
     image_url   = db.Column(db.String)
     created_on  = db.Column(db.Date, default=datetime.utcnow())
+    featured    = db.Column(db.Integer)
     user_id     = db.Column(db.Integer, db.ForeignKey('users.id'))
     user        = db.relationship('User', backref='added_by')
     guitars     = db.relationship('Guitar',
                                     secondary='collection_guitars')
 
-    def __init__(self, name, description, user_id, image_url=None):
+    def __init__(self, name, description, user_id, image_url=None, featured=0):
         self.name = name
         self.description = description
         self.user_id = user_id
         self.image_url = image_url
+        self.featured = featured
 
     def add_guitar(self, guitar):
         "Add a single guitar to the current collection"
